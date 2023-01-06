@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist & for file in reference/*.yaml;do npx redoc-cli bundle -o dist/${file%}.html $file;done"
+    "dist": "rm -rf dist & for file in reference/*.yaml;do npx redoc-cli bundle -o dist/${file%}.html $file;done"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build"
+      "pre-commit": "npm run dist"
     }
   }
 }

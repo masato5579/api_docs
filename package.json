@@ -1,0 +1,22 @@
+{
+  "name": "anime_app_api_doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist & for file in reference/*.yaml;do npx redoc-cli bundle -o dist/${file%}.html $file;done"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "husky": "^8.0.3",
+    "redoc-cli": "^0.13.20"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build"
+    }
+  }
+}

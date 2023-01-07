@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "delReference": "test -f current_refernce && rm -rf current_refernce || :",
-    "cpReference": "npm run delReference & cp -R reference/ current_refernce",
+    "cpReference": "cp -R reference/ current_refernce",
     "build": "rm -rf public & for file in current_refernce/*.yaml;do npx redoc-cli bundle -o public/${file%}.html $file;done"
   },
   "keywords": [],

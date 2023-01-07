@@ -59,6 +59,39 @@ paths:
               properties: {}
         description: ''
     parameters: []
+  /api/profile:
+    parameters: []
+    patch:
+      summary: ''
+      operationId: patch-profile
+      responses:
+        '200':
+          description: OK
+      description: api.profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hoge@gmail.com
+                name:
+                  type: string
+                  example: 山田花子
+                age:
+                  type: integer
+                  example: '14'
+                sex:
+                  type: integer
+                  example: 0
+                  minimum: 0
+                  maximum: 2
+                image:
+                  type: string
+                  example: hoge.png
+        description: ''
   /login:
     post:
       summary: ''
@@ -102,7 +135,7 @@ paths:
       description: auth.logout
       parameters: []
     parameters: []
-  /anime:
+  /api/anime:
     get:
       summary: ''
       tags: []
@@ -154,6 +187,62 @@ paths:
               type: object
               properties: {}
         description: ''
+    parameters: []
+  /api/movie:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+      operationId: get-api-movie
+      description: api.movie
+  /api/watch:
+    post:
+      summary: ''
+      operationId: post-api-watch
+      responses:
+        '200':
+          description: OK
+      description: api.watch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                anime_id:
+                  type: integer
+                  example: 21
+                  minimum: 1
+                  description: アニメテーブルのID
+                  format: int64
+              required:
+                - anime_id
+        description: ''
+  /api/favo:
+    post:
+      summary: ''
+      operationId: post-api-favo
+      responses:
+        '200':
+          description: OK
+      description: api.favo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                anime_id:
+                  type: integer
+                  minimum: 1
+                  example: 21
+                  format: int64
 components:
   schemas:
     User:
@@ -237,10 +326,10 @@ components:
         - name
         - email
         - password
-    ANIME:
+    Anime:
       title: ANIME
       x-stoplight:
-        id: iknjmpsx9f9af
+        id: d17c4d648c1f7
       type: object
       properties:
         id:
@@ -300,3 +389,26 @@ components:
         - public_url
         - product_companies
         - created_years
+    Movie:
+      title: Movie
+      x-stoplight:
+        id: tvqujo2oyuxh4
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 54
+          minimum: 1
+        name:
+          type: string
+          example: Nexflix
+          minLength: 1
+        image:
+          type: string
+          example: hoge@png
+        public_url:
+          type: string
+          format: uri
+          example: 'https://www.google.com/?hl=ja'
+          minLength: 1

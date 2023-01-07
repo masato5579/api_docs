@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cpReference": "cp -R reference/ current_refernce",
     "dist": "rm -rf dist & for file in reference/*.yaml;do npx redoc-cli bundle -o dist/${file%}.html $file;done"
   },
   "keywords": [],
@@ -13,10 +14,5 @@
     "http-server": "^14.1.1",
     "husky": "^8.0.3",
     "redoc-cli": "^0.13.20"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run dist"
-    }
   }
 }

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cpReference": "rm -rf current_refernce & cp -R reference/ current_refernce",
-    "build": "rm -rf dist & for file in current_refernce/*.yaml;do npx redoc-cli bundle -o dist/${file%}.html $file;done"
+    "delReference": "test -f current_refernce && rm -rf current_refernce || :",
+    "cpReference": "npm run delReference & cp -R reference/ current_refernce",
+    "build": "rm -rf dist & for file in current_refernce/*.yaml;do npx redoc-cli bundle -o dist/${file%}.html $file;done --output public"
   },
   "keywords": [],
   "author": "",

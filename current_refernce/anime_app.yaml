@@ -104,7 +104,7 @@ paths:
     parameters: []
   /anime:
     get:
-      summary: Your GET endpoint
+      summary: ''
       tags: []
       responses:
         '200':

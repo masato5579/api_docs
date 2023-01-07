@@ -190,7 +190,7 @@ paths:
     parameters: []
   /api/movie:
     get:
-      summary: Your GET endpoint
+      summary: ''
       tags: []
       responses:
         '200':

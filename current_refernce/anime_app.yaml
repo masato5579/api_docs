@@ -26,23 +26,33 @@ paths:
                   type: string
                   format: email
                   example: hoge@gmail.com
+                  description: メールアドレス
                 password:
                   type: string
                   format: password
+                  description: パスワード
                 name:
                   type: string
+                  description: 名前
                 age:
                   type: integer
                   minimum: 0
                   maximum: 130
                   format: int32
+                  description: 年齢
                 sex:
                   type: integer
                   minimum: 0
                   maximum: 2
                   format: int32
+                  description: 性別
                 image:
                   type: string
+                  description: プロフィール画像
+              required:
+                - email
+                - password
+                - name
           application/xml:
             schema:
               type: object
@@ -68,9 +78,11 @@ paths:
                   type: string
                   format: email
                   example: hoge@gmail.com
+                  description: メールアドレス
                 password:
                   type: string
                   format: password
+                  description: パスワード
               required:
                 - email
                 - password
@@ -90,6 +102,58 @@ paths:
       description: auth.logout
       parameters: []
     parameters: []
+  /anime:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      operationId: get-anime
+      description: api.anime
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 山田花子
+                created_years:
+                  type: integer
+                  format: int32
+                  default: 2022
+                  example: 2022
+                  minimum: 2014
+                for_sex:
+                  type: integer
+                  default: 0
+                  example: 0
+                  format: int32
+                season:
+                  type: integer
+                  format: int32
+                  default: 1
+                  example: 1
+                  minimum: 1
+                is_favo:
+                  type: boolean
+                is_watch:
+                  type: boolean
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+        description: ''
 components:
   schemas:
     User:
@@ -222,6 +286,10 @@ components:
           type: string
           example: 京都アニメーション
           description: 制作会社
+        created_years:
+          type: integer
+          format: int32
+          description: 作品作成年
       required:
         - id
         - anime_api_id
@@ -231,3 +299,4 @@ components:
         - season
         - public_url
         - product_companies
+        - created_years
